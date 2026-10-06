@@ -2,7 +2,19 @@ const Match = require("../models/matches");
 
 exports.getMatches = async(req,res,next) => {
     try{
-        const match =await Match.find();
+        const {sport,sort} = req.query;
+        let filterQuery = {};
+
+        if(sport){
+            filterQuery.sport = sport;
+        }
+
+        let exe = Match.find(filterQuery);
+
+        if(sort === 'points'){
+            exe = exe.sort({points: 1});
+        }
+        const match =await exe;
         res.status(200).json(match);
     }
     catch(err){

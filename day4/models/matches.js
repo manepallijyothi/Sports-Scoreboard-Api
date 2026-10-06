@@ -9,25 +9,24 @@ const MatchSchema = new mongoose.Schema({
     points: {
         type: Number,
         required: true,
-        min: 0
+        min: 0,
+        max: 500
     },
     sport:{
         type: String,
         required: true,
-        trim: true 
+        enum: ['Cricket', 'kabaddi', 'football', 'other'] 
     },
     won:{
         type: Boolean,
-        required: true,
-        trim: true 
+        default: false
     },
     matchDate:{
         type: String,
         required: true,
-        trim: true 
     }
 },{
     timestamps : true
 });
 
-module.exports = mongoose.model("Match",MatchSchema)
+module.exports = mongoose.model("Match",MatchSchema, 'matches');
