@@ -2,6 +2,8 @@ const express = require("express")
 const c=require("../controller/matchcontroller")
 const router = express.Router();
 
+router.get("/won",c.getWon);
+
 router.get("",c.getMatches);
 
 router.get("/:id",c.getMatch);

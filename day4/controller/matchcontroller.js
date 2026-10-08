@@ -1,5 +1,14 @@
 const Match = require("../models/matches");
 
+
+exports.getWon = async (req, res) => {
+  try {
+    const matches = await Match.find({ won: true });
+    res.status(200).json(matches);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 exports.getMatches = async(req,res,next) => {
     try{
         const {sport,sort} = req.query;
